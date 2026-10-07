@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Domain Conference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF0F3; --ink:#12161C; --muted:#4D5663; --line:#C9D0D8;
+  --biz:#0E5A45; --ai:#2A3BE8; --mix:#F2A900; --panel:#FFFFFF; --on-accent:#FFFFFF;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Newsreader",Georgia,"Times New Roman",serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0F1318;--ink:#E9EDF2;--muted:#9AA5B3;--line:#2A323D;--biz:#3FBF97;--ai:#7C89FF;--mix:#FFC43D;--panel:#171C23;--on-accent:#0F1318}
+}
+:root[data-theme="dark"]{--bg:#0F1318;--ink:#E9EDF2;--muted:#9AA5B3;--line:#2A323D;--biz:#3FBF97;--ai:#7C89FF;--mix:#FFC43D;--panel:#171C23;--on-accent:#0F1318}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.15rem;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mix);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;max-width:18ch}
+p{margin:0 0 1rem;max-width:62ch}
+section{padding:5rem 0;border-top:1px solid var(--line)}
+.lede{color:var(--muted);font-size:1.25rem}
+
+/* header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;padding-bottom:.9rem}
+.mark{font-family:var(--display);font-weight:800;text-decoration:none;font-size:1.1rem}
+nav{display:flex;gap:1.4rem;font-family:var(--display);font-weight:500;font-size:.95rem}
+nav a{text-decoration:none}nav a:hover{text-decoration:underline}
+@media(max-width:640px){nav a:not(.cta-s){display:none}}
+.cta-s{background:var(--ink);color:var(--bg);padding:.35rem .9rem;border-radius:99px}
+
+/* hero */
+.hero{padding:3rem 0 5rem;border-top:0}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:3rem;align-items:center}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+h1{font-size:clamp(3rem,8vw,6rem);font-weight:800}
+h1 span{display:block}
+h1 .b{color:var(--biz)}h1 .a{color:var(--ai)}
+.hero p{font-size:1.3rem}
+.meta{font-family:var(--display);font-weight:500;color:var(--muted);margin-top:1.5rem}
+.btn{display:inline-block;font-family:var(--display);font-weight:800;background:var(--mix);color:#12161C;text-decoration:none;padding:.9rem 1.6rem;border-radius:99px;border:0;font-size:1.05rem;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}
+
+/* the venn */
+.venn{position:relative;aspect-ratio:1/.82;width:100%;max-width:520px;margin:0 auto}
+.venn button{position:absolute;border:0;border-radius:50%;width:62%;aspect-ratio:1;cursor:pointer;font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,3vw,1.5rem);color:var(--on-accent);mix-blend-mode:normal;transition:transform .35s,opacity .35s}
+.venn .vb{left:0;top:9%;background:var(--biz);opacity:.9;text-align:left;padding:0 0 0 9%}
+.venn .va{right:0;top:9%;background:var(--ai);opacity:.9;text-align:right;padding:0 9% 0 0}
+.venn .vb:hover,.venn .va:hover{transform:scale(1.03)}
+.venn .vm{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:24%;aspect-ratio:1/1.45;border-radius:50%;background:var(--mix);display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:800;font-size:clamp(.7rem,1.8vw,.95rem);color:#12161C;line-height:1.1;pointer-events:none}
+.venn-note{text-align:center;min-height:5.5rem;margin:1.2rem auto 0;max-width:34ch;font-size:1.05rem}
+.venn-note strong{font-family:var(--display)}
+
+/* three questions */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:3rem;border-top:2px solid var(--ink)}
+@media(max-width:760px){.three{grid-template-columns:1fr}}
+.three div{padding:1.5rem 1.5rem 1rem 0}
+.three h3{font-size:1.5rem;margin-bottom:.6rem}
+
+/* days */
+.tabs{display:flex;gap:.5rem;margin:2.5rem 0 1.5rem;flex-wrap:wrap}
+.tabs button{font-family:var(--display);font-weight:800;font-size:1rem;padding:.7rem 1.3rem;border-radius:99px;border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:2rem}
+.panel[hidden]{display:none}
+.panel h3{font-size:1.9rem;margin-bottom:.5rem}
+.sess{list-style:none;padding:0;margin:1.5rem 0 0}
+.sess li{display:grid;grid-template-columns:7rem 1fr;gap:1rem;padding:.9rem 0;border-top:1px solid var(--line)}
+.sess time{font-family:var(--display);font-weight:500;color:var(--muted)}
+.sess b{font-family:var(--display);font-weight:800;display:block}
+@media(max-width:560px){.sess li{grid-template-columns:1fr;gap:.2rem}}
+
+/* who */
+.who{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3rem}
+@media(max-width:760px){.who{grid-template-columns:1fr}}
+.who article{padding:2rem;border-radius:14px;color:var(--on-accent)}
+.who .wb{background:var(--biz)}.who .wa{background:var(--ai)}
+.who h3{font-size:1.8rem;margin-bottom:.8rem}
+.who ul{margin:0;padding-left:1.1rem}.who li{margin-bottom:.4rem}
+.together{margin-top:1.5rem;padding:1.5rem 2rem;border-radius:14px;background:var(--mix);color:#12161C;font-family:var(--display);font-weight:800;font-size:1.3rem}
+
+/* register */
+form{display:grid;gap:1rem;max-width:520px;margin-top:2rem}
+label{font-family:var(--display);font-weight:500;font-size:.95rem;display:grid;gap:.35rem}
+input,select{font:inherit;font-family:var(--body);font-size:1.05rem;padding:.75rem .9rem;border-radius:10px;border:1.5px solid var(--line);background:var(--panel);color:var(--ink)}
+.ok{display:none;padding:1.2rem 1.4rem;border-radius:12px;background:var(--panel);border:2px solid var(--biz);max-width:520px;margin-top:2rem;font-family:var(--display);font-weight:500}
+footer{padding:2.5rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:1rem}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="mark" href="#top">The Domain Conference</a>
+  <nav><a href="#days">Three days</a><a href="#who">Who attends</a><a class="cta-s" href="#register">Request a seat</a></nav>
+</div></header>
+
+<main id="top">
+<section class="hero"><div class="wrap">
+  <div>
+    <h1><span class="b">Business</span><span class="a">meets AI.</span><span>In one room.</span></h1>
+    <p style="margin-top:1.5rem">Three days where business leaders and AI leaders each bring their own expertise, and work out what's possible, what's available right now, and how to put each other's knowledge to use.</p>
+    <p><a class="btn" href="#register">Request a seat</a></p>
+    <p class="meta">3 days · Dates and venue announced soon</p>
+  </div>
+  <div>
+    <div class="venn" role="group" aria-label="Business and AI overlap">
+      <button class="vb" type="button" data-k="biz">Business</button>
+      <button class="va" type="button" data-k="ai">AI</button>
+      <div class="vm" aria-hidden="true">The<br>Domain</div>
+    </div>
+    <p class="venn-note" id="vnote" aria-live="polite"><strong>Select a circle.</strong> See what each side brings to the room.</p>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap">
+  <h2>Each side holds half the answer.</h2>
+  <p class="lede" style="margin-top:1.5rem">Business leaders know the problems worth solving, the customers, and the constraints. AI leaders know what the technology can do today and what's coming. Most conferences keep these groups apart. This one doesn't.</p>
+  <div class="three">
+    <div><h3>What's possible</h3><p>Where the technology is heading, and which problems it could change for your industry.</p></div>
+    <div><h3>What's available now</h3><p>Tools and approaches that work today, with honest accounts of what they cost and where they fall short.</p></div>
+    <div><h3>How to leverage each other</h3><p>Practical ways to pair domain knowledge with technical skill, and leave with people to work with.</p></div>
+  </div>
+</div></section>
+
+<section id="days"><div class="wrap">
+  <h2>Three days, one arc.</h2>
+  <p class="lede" style="margin-top:1.5rem">Each day builds on the one before. The schedule below is a draft and will change as speakers confirm.</p>
+  <div class="tabs" role="tablist" aria-label="Conference days">
+    <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Day 1</button>
+    <button role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Day 2</button>
+    <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Day 3</button>
+  </div>
+  <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0">
+    <h3>What's possible</h3>
+    <p>Look ahead together. AI leaders show the frontier. Business leaders describe the problems they'd most like solved.</p>
+    <ul class="sess">
+      <li><time>Morning</time><div><b>Opening conversation</b>A business leader and an AI leader open with where each sees the biggest opportunity.</div></li>
+      <li><time>Midday</time><div><b>The frontier, plainly explained</b>Researchers and builders explain what's new, without jargon.</div></li>
+      <li><time>Afternoon</time><div><b>Problems worth solving</b>Business leaders pitch real challenges to a room of AI experts.</div></li>
+    </ul>
+  </div>
+  <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
+    <h3>What's available right now</h3>
+    <p>Come down to earth. Real deployments, real budgets, and an honest look at what works today.</p>
+    <ul class="sess">
+      <li><time>Morning</time><div><b>Case studies from the field</b>Leaders who shipped AI into their business share results, costs and mistakes.</div></li>
+      <li><time>Midday</time><div><b>Hands-on tool sessions</b>Small groups try current tools on their own problems.</div></li>
+      <li><time>Afternoon</time><div><b>Ask the experts</b>Open Q&amp;A on risk, data, hiring, and build versus buy.</div></li>
+    </ul>
+  </div>
+  <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+    <h3>How to leverage each other</h3>
+    <p>Turn conversations into plans. Pair up, scope projects, and agree on what happens next.</p>
+    <ul class="sess">
+      <li><time>Morning</time><div><b>Working pairs</b>Each business leader works with an AI leader to sketch a concrete project.</div></li>
+      <li><time>Midday</time><div><b>Share-outs</b>Pairs present what they found, and the room gives feedback.</div></li>
+      <li><time>Afternoon</time><div><b>Commitments</b>Everyone leaves with a next step, a named partner, and a date.</div></li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="who"><div class="wrap">
+  <h2>Two kinds of leaders. Equal footing.</h2>
+  <div class="who">
+    <article class="wb"><h3>Business leaders</h3><ul>
+      <li>Founders, executives and operators</li>
+      <li>People who own a real problem and a real budget</li>
+      <li>Leaders who want to know what they can do now</li></ul></article>
+    <article class="wa"><h3>AI leaders</h3><ul>
+      <li>Researchers, engineers and product builders</li>
+      <li>People shipping AI into production</li>
+      <li>Leaders who want to learn where it's needed most</li></ul></article>
+  </div>
+  <div class="together">The overlap is the point: everyone teaches, and everyone learns.</div>
+</div></section>
+
+<section id="register"><div class="wrap">
+  <h2>Request a seat.</h2>
+  <p class="lede" style="margin-top:1.5rem">Seats are limited so the conversations stay small. Tell us who you are and we'll be in touch with details.</p>
+  <form id="f">
+    <label>Full name<input name="n" required autocomplete="name"></label>
+    <label>Email<input name="e" type="email" required autocomplete="email"></label>
+    <label>I'm coming as<select name="r"><option>A business leader</option><option>An AI leader</option></select></label>
+    <label>Organization<input name="o" autocomplete="organization"></label>
+    <button class="btn" type="submit">Request a seat</button>
+  </form>
+  <div class="ok" id="ok" role="status"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">The Domain Conference. Where business and AI leaders work it out together.</div></footer>
+
+<script>
+(function(){
+  var notes={
+    biz:"<strong>Business brings</strong> the problems, the customers, the budgets, and the knowledge of how things really work.",
+    ai:"<strong>AI brings</strong> the technical skill, a clear view of what works today, and what's coming next."
+  };
+  var note=document.getElementById('vnote');
+  document.querySelectorAll('.venn button').forEach(function(b){
+    b.addEventListener('click',function(){note.innerHTML=notes[b.dataset.k]+" Together, you find what's worth building."});
+  });
+
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function show(i){
+    tabs.forEach(function(t,j){
+      var on=i===j;
+      t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(i)});
+    t.addEventListener('keydown',function(e){
+      var k=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(k){var n=(i+k+tabs.length)%tabs.length;show(n);tabs[n].focus();}
+    });
+  });
+
+  document.getElementById('f').addEventListener('submit',function(e){
+    e.preventDefault();
+    var d=new FormData(e.target),ok=document.getElementById('ok');
+    ok.textContent='Thank you, '+d.get('n')+'. Your request is noted. We\u2019ll email '+d.get('e')+' with next steps.';
+    ok.style.display='block';e.target.reset();
+  });
+})();
+</script>
+</body>
+</html>
